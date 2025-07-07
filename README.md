@@ -58,6 +58,10 @@ pip install tensorflow opencv-python ultralytics matplotlib seaborn numpy
 - `process_video.py` - Video processing with object detection
 - `gradcam_analysis.py` - Model interpretability analysis
 
+## AI-Assisted Code 
+
+- This code is assisted by AI (Cursor)
+  
 ## License
 
 MIT License 
