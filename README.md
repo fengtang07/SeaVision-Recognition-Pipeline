@@ -4,7 +4,8 @@ Deep learning system for classifying 23 species of marine animals using Efficien
 
 ## Dataset
 
-13,711 images across 23 classes including sharks, dolphins, whales, octopus, and other marine species.
+13,000+ images across 23 classes including sharks, dolphins, whales, octopus, and other marine species.
+Dataset can be downloaded here https://www.kaggle.com/datasets/vencerlanz09/sea-animals-image-dataste
 
 ## Model Architecture
 
