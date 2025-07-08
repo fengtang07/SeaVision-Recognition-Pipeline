@@ -1,4 +1,4 @@
-# seavision-recognition-pipeline
+# SeaVision-recognition-pipeline
 
 Deep learning system for classifying 23 species of marine animals using EfficientNetB7 and YOLOv8 object detection.
 
