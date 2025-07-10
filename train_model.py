@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🌊 Sea Animals Classification Pipeline
+Sea Animals Classification Pipeline
 Deep learning pipeline for marine animal species classification using EfficientNetB7
 
 
@@ -59,10 +59,10 @@ class SeaAnimalsClassifier:
         self._setup_environment()
         self._initialize_variables()
         
-        print("🌊 Sea Animals Classification Pipeline v{} Initialized".format(__version__))
-        print(f"📊 Target Classes: {self.config['NUM_CLASSES']}")
-        print(f"🎯 Batch Size: {self.config['BATCH_SIZE']}")
-        print(f"⚡ Mixed Precision: {self.config['MIXED_PRECISION']}")
+        print(" Sea Animals Classification Pipeline v{} Initialized".format(__version__))
+        print(f" Target Classes: {self.config['NUM_CLASSES']}")
+        print(f" Batch Size: {self.config['BATCH_SIZE']}")
+        print(f"Mixed Precision: {self.config['MIXED_PRECISION']}")
 
     def _get_default_config(self):
         """Get default configuration settings"""
@@ -165,7 +165,7 @@ class SeaAnimalsClassifier:
         Returns:
             tuple: (train_df, val_df, test_df) DataFrames
         """
-        print(f"\n📥 Loading dataset from: {dataset_path}")
+        print(f"\n Loading dataset from: {dataset_path}")
         
         dataset_path = Path(dataset_path)
         if not dataset_path.exists():
@@ -197,11 +197,11 @@ class SeaAnimalsClassifier:
         # Filter to specified classes or detect automatically
         if class_labels is None:
             self.class_labels = sorted(df['label'].unique())
-            print(f"🔍 Auto-detected {len(self.class_labels)} classes")
+            print(f" Auto-detected {len(self.class_labels)} classes")
         else:
             self.class_labels = class_labels
             df = df[df['label'].isin(class_labels)]
-            print(f"🎯 Using {len(self.class_labels)} specified classes")
+            print(f" Using {len(self.class_labels)} specified classes")
         
         self.config['NUM_CLASSES'] = len(self.class_labels)
         
@@ -231,7 +231,7 @@ class SeaAnimalsClassifier:
             val_df (pd.DataFrame): Validation data  
             test_df (pd.DataFrame): Test data
         """
-        print("\n🔧 Creating optimized data pipeline...")
+        print("\n Creating optimized data pipeline...")
         
         # Create label mapping
         label_to_index = {label: idx for idx, label in enumerate(self.class_labels)}
@@ -419,13 +419,13 @@ class SeaAnimalsClassifier:
         Returns:
             dict: Training statistics and metrics
         """
-        print("\n🚀 Starting two-stage training process...")
+        print("\n Starting two-stage training process...")
         
         # Setup callbacks
         callbacks = self._get_callbacks()
         
         # Stage 1: Train classifier head
-        print(f"\n🎯 STAGE 1: Training classifier head ({self.config['INITIAL_EPOCHS']} epochs)")
+        print(f"\n STAGE 1: Training classifier head ({self.config['INITIAL_EPOCHS']} epochs)")
         
         self.model.compile(
             optimizer=Adam(learning_rate=self.config['INITIAL_LR']),
@@ -478,9 +478,9 @@ class SeaAnimalsClassifier:
             'timestamp': datetime.now().isoformat()
         }
         
-        print(f"\n✅ Training completed successfully!")
-        print(f"   ⏱️ Total time: {total_time/60:.1f} minutes")
-        print(f"   📈 Best validation accuracy: {self.training_stats['stage2_best_val_acc']:.4f}")
+        print(f"\n Training completed successfully!")
+        print(f"    Total time: {total_time/60:.1f} minutes")
+        print(f"    Best validation accuracy: {self.training_stats['stage2_best_val_acc']:.4f}")
         
         return self.training_stats
 
@@ -522,7 +522,7 @@ class SeaAnimalsClassifier:
         Returns:
             dict: Evaluation metrics
         """
-        print("\n📊 Evaluating model on test dataset...")
+        print("\n Evaluating model on test dataset...")
         
         # Basic evaluation
         test_loss, test_accuracy = self.model.evaluate(self.test_ds, verbose=1)
@@ -552,9 +552,9 @@ class SeaAnimalsClassifier:
             'num_test_samples': len(true_labels)
         }
         
-        print(f"✅ Evaluation completed:")
-        print(f"   🎯 Test Accuracy: {test_accuracy:.4f}")
-        print(f"   📉 Test Loss: {test_loss:.4f}")
+        print(f" Evaluation completed:")
+        print(f"    Test Accuracy: {test_accuracy:.4f}")
+        print(f"   Test Loss: {test_loss:.4f}")
         
         return evaluation_results
 
@@ -570,13 +570,13 @@ class SeaAnimalsClassifier:
             filepath = f"{self.config['MODEL_NAME']}_{timestamp}.weights.h5"
         
         self.model.save_weights(filepath)
-        print(f"💾 Model saved to: {filepath}")
+        print(f" Model saved to: {filepath}")
         
         # Save configuration
         config_path = filepath.replace('.weights.h5', '_config.json')
         with open(config_path, 'w') as f:
             json.dump(self.config, f, indent=2)
-        print(f"⚙️ Configuration saved to: {config_path}")
+        print(f"⚙ Configuration saved to: {config_path}")
 
     def visualize_training_history(self, save_path=None):
         """
@@ -665,7 +665,7 @@ class SeaAnimalsClassifier:
         
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            print(f"📊 Training visualization saved to: {save_path}")
+            print(f" Training visualization saved to: {save_path}")
         
         plt.show()
 
